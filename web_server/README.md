@@ -8,6 +8,17 @@ What is the main role of a web server
 What is a child process
 Why web servers usually have a parent process and child processes
 What are the main HTTP requests
+<<<<<<< HEAD
+=======
+DNS
+What DNS stands for
+What is DNS main role
+DNS Record Types
+A
+CNAME
+TXT
+MX
+>>>>>>> 853d64ebd524bb301085fb469a27e66c0eb9a6cd
 
 Requirements
 
@@ -21,4 +32,8 @@ All your Bash script files must be executable
 Your Bash script must pass Shellcheck (version 0.3.7) without any error
 The first line of all your Bash scripts should be exactly #!/usr/bin/env bash
 The second line of all your Bash scripts should be a comment explaining what is the script doing
+<<<<<<< HEAD
 You can’t use systemctl for restarting a process
+=======
+You can’t use systemctl for restarting a process
+>>>>>>> 853d64ebd524bb301085fb469a27e66c0eb9a6cd
