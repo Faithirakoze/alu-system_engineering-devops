@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# This script installs and configures HAProxy on lb-01 for roundrobin load balancing
 
 STUDENT_ID="6586"
 WEB01="${STUDENT_ID}-web-01"
@@ -7,8 +8,10 @@ WEB02="${STUDENT_ID}-web-02"
 apt-get update
 apt-get install -y haproxy
 
+# Enable HAProxy
 sed -i '/ENABLED=/c\ENABLED=1' /etc/default/haproxy
 
+# Write HAProxy config
 cat <<EOF > /etc/haproxy/haproxy.cfg
 global
     log /dev/log local0
@@ -33,4 +36,5 @@ backend http_back
 EOF
 
 systemctl restart haproxy
+
 
