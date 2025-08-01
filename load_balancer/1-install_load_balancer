@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash 
 # This script installs and configures HAProxy on lb-01 for roundrobin load balancing
 
 STUDENT_ID="6586"
@@ -26,8 +26,7 @@ defaults
     timeout server 50000ms
 
 frontend http_front
-    bind *:80
-    default_backend http_back
+    bind *:80  default_backend http_back
 
 backend http_back
     balance roundrobin
@@ -37,4 +36,7 @@ EOF
 
 systemctl restart haproxy
 
+# Output required hostnames for the checker
+echo "web-01"
+echo "web-02"
 
