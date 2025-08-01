@@ -1,0 +1,36 @@
+#!/bin/bash
+
+STUDENT_ID="6586"
+WEB01="${STUDENT_ID}-web-01"
+WEB02="${STUDENT_ID}-web-02"
+
+apt-get update
+apt-get install -y haproxy
+
+sed -i '/ENABLED=/c\ENABLED=1' /etc/default/haproxy
+
+cat <<EOF > /etc/haproxy/haproxy.cfg
+global
+    log /dev/log local0
+    log /dev/log local1 notice
+    daemon
+    maxconn 256
+
+defaults
+    log global
+    timeout connect 5000ms
+    timeout client 50000ms
+    timeout server 50000ms
+
+frontend http_front
+    bind *:80
+    default_backend http_back
+
+backend http_back
+    balance roundrobin
+    server web01 ${WEB01}:80 check
+    server web02 ${WEB02}:80 check
+EOF
+
+systemctl restart haproxy
+
